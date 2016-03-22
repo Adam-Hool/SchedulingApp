@@ -7,7 +7,7 @@ namespace SchedulingApp.Models
 {
     public class Shift
     {
-        public int ShiftID { get; set; }
+        public int ID { get; set; }
         public int EmployeesID { get; set; }
         public int RegisteredCompanyID { get; set; }
         public int ScheduleID { get; set; }

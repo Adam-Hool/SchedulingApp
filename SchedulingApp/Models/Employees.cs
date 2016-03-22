@@ -7,7 +7,7 @@ namespace SchedulingApp.Models
 {
     public class Employees
     {
-        public int EmployeesID { get; set; }
+        public int ID { get; set; }
         public int RegisteredCompanyID { get; set; }
         public int ScheduleID { get; set; }
         public int JobRoleID { get; set; }
@@ -18,6 +18,7 @@ namespace SchedulingApp.Models
         public string LastName { get; set; }
         public DateTime HigherDate { get; set; }
         public int DesiredWeeklyHours { get; set; }
+        public List<JobRole>jobRole { get; set; }
 
 
     }
