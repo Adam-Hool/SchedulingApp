@@ -46,7 +46,7 @@ namespace SchedulingApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,EmployeesID,ScheduleID,JobRoleID,ShiftID,AvailabilityID,CompanyName")] RegisteredCompanies registeredCompanies)
+        public ActionResult Create([Bind(Include = "ID,CompanyName")] RegisteredCompanies registeredCompanies)
         {
             if (ModelState.IsValid)
             {
@@ -78,13 +78,13 @@ namespace SchedulingApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,EmployeesID,ScheduleID,JobRoleID,ShiftID,AvailabilityID,CompanyName")] RegisteredCompanies registeredCompanies)
+        public ActionResult Edit([Bind(Include = "ID,CompanyName")] RegisteredCompanies registeredCompanies)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(registeredCompanies).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", registeredCompanies);
             }
             return View(registeredCompanies);
         }

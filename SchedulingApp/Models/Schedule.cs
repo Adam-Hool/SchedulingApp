@@ -7,16 +7,21 @@ namespace SchedulingApp.Models
 {
     public class Schedule
     {
-        public int ID { get; set; }
-        public int EmployeesID { get; set; }
-        public int RegisteredCompanyID { get; set; }
-        public int JobRoleID { get; set; }
-        public int ShiftID { get; set; }
-        public int AvailabilityID { get; set; }
-
+        public int Id { get; set; }
+        public virtual ICollection<Day> Day { get; set; }
+        public virtual Employees Employees { get; set; }
+        public int RegisteredCompaniesId { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public Shift shift { get; set; }
         public string ScheduleName { get; set; }
+
+        //public Shift shift { get; set; }
+        //public DateTime Monday { get; set; }
+        //public DateTime Tuesday { get; set; }
+        //public DateTime Wednesday { get; set; }
+        //public DateTime Thursday { get; set; }
+        //public DateTime Friday { get; set; }
+        //public DateTime Saturday { get; set; }
+        //public DateTime Sunday { get; set; }
     }
 }

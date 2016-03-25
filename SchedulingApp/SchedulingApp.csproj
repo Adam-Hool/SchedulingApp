@@ -201,23 +201,29 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AvailabilitiesController.cs" />
+    <Compile Include="Controllers\DaysController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobRolesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MondaysController.cs" />
     <Compile Include="Controllers\RegisteredCompaniesController.cs" />
     <Compile Include="Controllers\SchedulesController.cs" />
-    <Compile Include="Controllers\ShiftsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603212126463_initalMigration.cs" />
-    <Compile Include="Migrations\201603212126463_initalMigration.Designer.cs">
-      <DependentUpon>201603212126463_initalMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201603241923395_initalSchema.cs" />
+    <Compile Include="Migrations\201603241923395_initalSchema.Designer.cs">
+      <DependentUpon>201603241923395_initalSchema.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603221445456_calendarMigration.cs" />
-    <Compile Include="Migrations\201603221445456_calendarMigration.Designer.cs">
-      <DependentUpon>201603221445456_calendarMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201603241936277_updatedmonday.cs" />
+    <Compile Include="Migrations\201603241936277_updatedmonday.Designer.cs">
+      <DependentUpon>201603241936277_updatedmonday.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603251915055_updatedEmployeesId.cs" />
+    <Compile Include="Migrations\201603251915055_updatedEmployeesId.Designer.cs">
+      <DependentUpon>201603251915055_updatedEmployeesId.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -225,12 +231,19 @@
     <Compile Include="Models\DataBaseContext.cs" />
     <Compile Include="Models\Employees.cs" />
     <Compile Include="Models\Events.cs" />
+    <Compile Include="Models\Friday.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\JobRole.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Monday.cs" />
     <Compile Include="Models\RegisteredCompanies.cs" />
+    <Compile Include="Models\Saturday.cs" />
     <Compile Include="Models\Schedule.cs" />
-    <Compile Include="Models\Shift.cs" />
+    <Compile Include="Models\Day.cs" />
+    <Compile Include="Models\Sunday.cs" />
+    <Compile Include="Models\Thursday.cs" />
+    <Compile Include="Models\Tuesday.cs" />
+    <Compile Include="Models\Wednesday.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -342,6 +355,10 @@
     <Content Include="Scripts\lang\zh-cn.js" />
     <Content Include="Scripts\lang\zh-tw.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -379,15 +396,48 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Employees\Index.cshtml" />
+    <Content Include="Views\Employees\Create.cshtml" />
+    <Content Include="Views\Employees\Edit.cshtml" />
+    <Content Include="Views\Employees\Details.cshtml" />
+    <Content Include="Views\Employees\Delete.cshtml" />
+    <Content Include="Views\Availabilities\Index.cshtml" />
+    <Content Include="Views\Availabilities\Details.cshtml" />
+    <Content Include="Views\Availabilities\Edit.cshtml" />
+    <Content Include="Views\Availabilities\Delete.cshtml" />
+    <Content Include="Views\Days\Index.cshtml" />
+    <Content Include="Views\Days\Details.cshtml" />
+    <Content Include="Views\Days\Create.cshtml" />
+    <Content Include="Views\Days\Edit.cshtml" />
+    <Content Include="Views\Days\Delete.cshtml" />
+    <Content Include="Views\Events\Index.cshtml" />
+    <Content Include="Views\Events\Details.cshtml" />
+    <Content Include="Views\Events\Create.cshtml" />
+    <Content Include="Views\Events\Edit.cshtml" />
+    <Content Include="Views\Events\Delete.cshtml" />
+    <Content Include="Views\JobRoles\Index.cshtml" />
+    <Content Include="Views\JobRoles\Details.cshtml" />
+    <Content Include="Views\JobRoles\Create.cshtml" />
+    <Content Include="Views\JobRoles\Edit.cshtml" />
+    <Content Include="Views\JobRoles\Delete.cshtml" />
+    <Content Include="Views\RegisteredCompanies\Index.cshtml" />
+    <Content Include="Views\RegisteredCompanies\Details.cshtml" />
+    <Content Include="Views\RegisteredCompanies\Create.cshtml" />
+    <Content Include="Views\RegisteredCompanies\Edit.cshtml" />
+    <Content Include="Views\RegisteredCompanies\Delete.cshtml" />
+    <Content Include="Views\Schedules\Index.cshtml" />
+    <Content Include="Views\Schedules\Details.cshtml" />
+    <Content Include="Views\Schedules\Create.cshtml" />
+    <Content Include="Views\Schedules\Edit.cshtml" />
+    <Content Include="Views\Schedules\Delete.cshtml" />
+    <Content Include="Views\Mondays\Edit.cshtml" />
+    <Content Include="Views\Mondays\Delete.cshtml" />
+    <Content Include="Views\Mondays\Index.cshtml" />
+    <Content Include="Views\Mondays\Create.cshtml" />
+    <Content Include="Views\Availabilities\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Availabilities\" />
-    <Folder Include="Views\Employees\" />
-    <Folder Include="Views\JobRoles\" />
-    <Folder Include="Views\RegisteredCompanies\" />
-    <Folder Include="Views\Schedules\" />
-    <Folder Include="Views\Shifts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -397,11 +447,14 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603212126463_initalMigration.resx">
-      <DependentUpon>201603212126463_initalMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603241923395_initalSchema.resx">
+      <DependentUpon>201603241923395_initalSchema.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603221445456_calendarMigration.resx">
-      <DependentUpon>201603221445456_calendarMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603241936277_updatedmonday.resx">
+      <DependentUpon>201603241936277_updatedmonday.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603251915055_updatedEmployeesId.resx">
+      <DependentUpon>201603251915055_updatedEmployeesId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

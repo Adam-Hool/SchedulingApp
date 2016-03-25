@@ -46,7 +46,7 @@ namespace SchedulingApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,RegisteredCompanyID,ScheduleID,JobRoleID,ShiftID,AvailabilityID,FirstName,LastName,HigherDate,DesiredWeeklyHours")] Employees employees)
+        public ActionResult Create([Bind(Include = "Id,RegisteredCompaniesId,AvailabilityId,FullName,HigherDate")] Employees employees)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace SchedulingApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,RegisteredCompanyID,ScheduleID,JobRoleID,ShiftID,AvailabilityID,FirstName,LastName,HigherDate,DesiredWeeklyHours")] Employees employees)
+        public ActionResult Edit([Bind(Include = "Id,RegisteredCompaniesId,AvailabilityId,FullName,HigherDate")] Employees employees)
         {
             if (ModelState.IsValid)
             {

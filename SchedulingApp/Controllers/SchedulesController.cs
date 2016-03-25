@@ -17,8 +17,7 @@ namespace SchedulingApp.Controllers
         // GET: Schedules
         public ActionResult Index()
         {
-            var schedule = db.Schedule.Include(s => s.shift);
-            return View(schedule.ToList());
+            return View(db.Schedule.ToList());
         }
 
         // GET: Schedules/Details/5
@@ -39,7 +38,6 @@ namespace SchedulingApp.Controllers
         // GET: Schedules/Create
         public ActionResult Create()
         {
-            ViewBag.ShiftID = new SelectList(db.Shift, "ID", "ID");
             return View();
         }
 
@@ -48,7 +46,7 @@ namespace SchedulingApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,EmployeesID,RegisteredCompanyID,JobRoleID,ShiftID,AvailabilityID,StartDate,EndDate,ScheduleName")] Schedule schedule)
+        public ActionResult Create([Bind(Include = "ID,RegisteredCompanyID,StartDate,EndDate,ScheduleName")] Schedule schedule)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +55,6 @@ namespace SchedulingApp.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ShiftID = new SelectList(db.Shift, "ID", "ID", schedule.ShiftID);
             return View(schedule);
         }
 
@@ -73,7 +70,6 @@ namespace SchedulingApp.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ShiftID = new SelectList(db.Shift, "ID", "ID", schedule.ShiftID);
             return View(schedule);
         }
 
@@ -82,7 +78,7 @@ namespace SchedulingApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,EmployeesID,RegisteredCompanyID,JobRoleID,ShiftID,AvailabilityID,StartDate,EndDate,ScheduleName")] Schedule schedule)
+        public ActionResult Edit([Bind(Include = "ID,RegisteredCompanyID,StartDate,EndDate,ScheduleName")] Schedule schedule)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +86,6 @@ namespace SchedulingApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ShiftID = new SelectList(db.Shift, "ID", "ID", schedule.ShiftID);
             return View(schedule);
         }
 

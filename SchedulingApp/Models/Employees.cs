@@ -7,18 +7,15 @@ namespace SchedulingApp.Models
 {
     public class Employees
     {
-        public int ID { get; set; }
-        public int RegisteredCompanyID { get; set; }
-        public int ScheduleID { get; set; }
-        public int JobRoleID { get; set; }
-        public int ShiftID { get; set; }
-        public int AvailabilityID { get; set; }
+        public int Id { get; set; }
+        public virtual ICollection<Schedule> Schedule { get; set; }
+        public virtual ICollection<JobRole> JobRoles { get; set; }
+        public virtual ICollection<Events> Events { get; set; }
 
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public int RegisteredCompaniesId { get; set; }
+        public int? AvailabilityId { get; set; }
+        public string FullName { get; set; }
         public DateTime HigherDate { get; set; }
-        public int DesiredWeeklyHours { get; set; }
-        public List<JobRole>jobRole { get; set; }
 
 
     }

@@ -17,8 +17,7 @@ namespace SchedulingApp.Controllers
         // GET: Availabilities
         public ActionResult Index()
         {
-            var availability = db.Availability.Include(a => a.Employee);
-            return View(availability.ToList());
+            return View(db.Availability.ToList());
         }
 
         // GET: Availabilities/Details/5
@@ -39,7 +38,6 @@ namespace SchedulingApp.Controllers
         // GET: Availabilities/Create
         public ActionResult Create()
         {
-            ViewBag.EmployeesID = new SelectList(db.Employees, "ID", "FirstName");
             return View();
         }
 
@@ -48,7 +46,7 @@ namespace SchedulingApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,EmployeesID,RegisteredCompanyID,ScheduleID,JobRoleID,ShiftID,MondayAvailability,TuesdayAvailability,WednesdayAvailability,ThursdayAvailability,FridayAvailability,SaturdayAvailability,SundayAvailability")] Availability availability)
+        public ActionResult Create([Bind(Include = "ID,RegisteredCompaniesID,MondayId,EmployeesId")] Availability availability)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +55,6 @@ namespace SchedulingApp.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EmployeesID = new SelectList(db.Employees, "ID", "FirstName", availability.EmployeesID);
             return View(availability);
         }
 
@@ -73,7 +70,6 @@ namespace SchedulingApp.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.EmployeesID = new SelectList(db.Employees, "ID", "FirstName", availability.EmployeesID);
             return View(availability);
         }
 
@@ -82,7 +78,7 @@ namespace SchedulingApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,EmployeesID,RegisteredCompanyID,ScheduleID,JobRoleID,ShiftID,MondayAvailability,TuesdayAvailability,WednesdayAvailability,ThursdayAvailability,FridayAvailability,SaturdayAvailability,SundayAvailability")] Availability availability)
+        public ActionResult Edit([Bind(Include = "ID,RegisteredCompaniesID")] Availability availability)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +86,6 @@ namespace SchedulingApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.EmployeesID = new SelectList(db.Employees, "ID", "FirstName", availability.EmployeesID);
             return View(availability);
         }
 

@@ -10,116 +10,107 @@ using SchedulingApp.Models;
 
 namespace SchedulingApp.Controllers
 {
-    public class ShiftsController : Controller
+    public class DaysController : Controller
     {
         private DataBaseContext db = new DataBaseContext();
 
-        // GET: Shifts
+        // GET: Days
         public ActionResult Index()
         {
-            var shift = db.Shift.Include(s => s.employee).Include(s => s.jobRole);
-            return View(shift.ToList());
+            return View(db.Shift.ToList());
         }
 
-        // GET: Shifts/Details/5
+        // GET: Days/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Shift shift = db.Shift.Find(id);
-            if (shift == null)
+            Day day = db.Shift.Find(id);
+            if (day == null)
             {
                 return HttpNotFound();
             }
-            return View(shift);
+            return View(day);
         }
 
-        // GET: Shifts/Create
+        // GET: Days/Create
         public ActionResult Create()
         {
-            ViewBag.EmployeesID = new SelectList(db.Employees, "ID", "FirstName");
-            ViewBag.JobRoleID = new SelectList(db.JobRole, "ID", "JobTitle");
             return View();
         }
 
-        // POST: Shifts/Create
+        // POST: Days/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,EmployeesID,RegisteredCompanyID,ScheduleID,JobRoleID,AvailabilityID,StartTime,EndTime")] Shift shift)
+        public ActionResult Create([Bind(Include = "ID,DayOfWeek,StartTime,EndTime")] Day day)
         {
             if (ModelState.IsValid)
             {
-                db.Shift.Add(shift);
+                db.Shift.Add(day);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EmployeesID = new SelectList(db.Employees, "ID", "FirstName", shift.EmployeesID);
-            ViewBag.JobRoleID = new SelectList(db.JobRole, "ID", "JobTitle", shift.JobRoleID);
-            return View(shift);
+            return View(day);
         }
 
-        // GET: Shifts/Edit/5
+        // GET: Days/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Shift shift = db.Shift.Find(id);
-            if (shift == null)
+            Day day = db.Shift.Find(id);
+            if (day == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.EmployeesID = new SelectList(db.Employees, "ID", "FirstName", shift.EmployeesID);
-            ViewBag.JobRoleID = new SelectList(db.JobRole, "ID", "JobTitle", shift.JobRoleID);
-            return View(shift);
+            return View(day);
         }
 
-        // POST: Shifts/Edit/5
+        // POST: Days/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,EmployeesID,RegisteredCompanyID,ScheduleID,JobRoleID,AvailabilityID,StartTime,EndTime")] Shift shift)
+        public ActionResult Edit([Bind(Include = "ID,DayOfWeek,StartTime,EndTime")] Day day)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(shift).State = EntityState.Modified;
+                db.Entry(day).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.EmployeesID = new SelectList(db.Employees, "ID", "FirstName", shift.EmployeesID);
-            ViewBag.JobRoleID = new SelectList(db.JobRole, "ID", "JobTitle", shift.JobRoleID);
-            return View(shift);
+            return View(day);
         }
 
-        // GET: Shifts/Delete/5
+        // GET: Days/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Shift shift = db.Shift.Find(id);
-            if (shift == null)
+            Day day = db.Shift.Find(id);
+            if (day == null)
             {
                 return HttpNotFound();
             }
-            return View(shift);
+            return View(day);
         }
 
-        // POST: Shifts/Delete/5
+        // POST: Days/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Shift shift = db.Shift.Find(id);
-            db.Shift.Remove(shift);
+            Day day = db.Shift.Find(id);
+            db.Shift.Remove(day);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

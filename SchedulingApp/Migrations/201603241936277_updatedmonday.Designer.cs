@@ -7,13 +7,13 @@ namespace SchedulingApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class initalMigration : IMigrationMetadata
+    public sealed partial class updatedmonday : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(initalMigration));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(updatedmonday));
         
         string IMigrationMetadata.Id
         {
-            get { return "201603212126463_initalMigration"; }
+            get { return "201603241936277_updatedmonday"; }
         }
         
         string IMigrationMetadata.Source

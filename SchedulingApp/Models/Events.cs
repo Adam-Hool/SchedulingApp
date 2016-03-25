@@ -7,13 +7,16 @@ namespace SchedulingApp.Models
 {
     public class Events
     {
-        public string id { get; set; }
+        public int id { get; set; }
         public string title { get; set; }
         public string date { get; set; }
         public string start { get; set; }
         public string end { get; set; }
         public string url { get; set; }
-
         public bool allDay { get; set; }
+        public virtual JobRole JobRoleId { get; set; }
+        public virtual Day DayId { get; set; }
+        public virtual Employees EmployeesId{ get; set; }
+        public int RegisteredCompaniesId { get; set; }
     }
 }

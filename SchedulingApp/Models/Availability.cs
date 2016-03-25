@@ -7,21 +7,12 @@ namespace SchedulingApp.Models
 {
     public class Availability
     {
-        public int ID { get; set; }
-        public int EmployeesID { get; set; }
-        public int RegisteredCompanyID { get; set; }
-        public int ScheduleID { get; set; }
-        public int JobRoleID { get; set; }
-        public int ShiftID { get; set; }
-
-        public Employees Employee { get; set; }
-        public DateTime MondayAvailability { get; set; }
-        public DateTime TuesdayAvailability { get; set; }
-        public DateTime WednesdayAvailability { get; set; }
-        public DateTime ThursdayAvailability { get; set; }
-        public DateTime FridayAvailability { get; set; }
-        public DateTime SaturdayAvailability { get; set; }
-        public DateTime SundayAvailability { get; set; }
+        public int Id { get; set; }
+        public virtual ICollection<Day> Day { get; set; }
+        public int RegisteredCompaniesId { get; set; }
+        public int EmployeesId { get; set; }
+        public int MondayId { get; set; }
+        
 
     }
 }
