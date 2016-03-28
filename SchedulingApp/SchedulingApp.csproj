@@ -209,6 +209,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MondaysController.cs" />
     <Compile Include="Controllers\RegisteredCompaniesController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SchedulesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -227,6 +228,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApplicationRole.cs" />
     <Compile Include="Models\Availability.cs" />
     <Compile Include="Models\DataBaseContext.cs" />
     <Compile Include="Models\Employees.cs" />
@@ -435,6 +437,8 @@
     <Content Include="Views\Mondays\Index.cshtml" />
     <Content Include="Views\Mondays\Create.cshtml" />
     <Content Include="Views\Availabilities\Create.cshtml" />
+    <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\Role\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

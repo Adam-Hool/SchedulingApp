@@ -1,8 +1,20 @@
-﻿using System.Data.Entity;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
+using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.ModelConfiguration;
+using System.Data.Entity.ModelConfiguration.Configuration;
+using System.Data.Entity.Validation;
+using System.Globalization;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace SchedulingApp.Models
 {
@@ -29,5 +41,6 @@ namespace SchedulingApp.Models
         {
             return new ApplicationDbContext();
         }
+
     }
 }

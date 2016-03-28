@@ -18,8 +18,12 @@ namespace SchedulingApp.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
+        ApplicationDbContext context;
+
+
         public AccountController()
         {
+            context = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -27,6 +31,7 @@ namespace SchedulingApp.Controllers
             UserManager = userManager;
             SignInManager = signInManager;
         }
+
 
         public ApplicationSignInManager SignInManager
         {
@@ -139,6 +144,7 @@ namespace SchedulingApp.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ViewBag.Name = new SelectList(context.Roles.ToList(), "Name", "Name");
             return View();
         }
 
@@ -155,8 +161,8 @@ namespace SchedulingApp.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await this.UserManager.AddToRoleAsync(user.Id, model.Name);
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
