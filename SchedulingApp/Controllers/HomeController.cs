@@ -72,9 +72,20 @@ namespace SchedulingApp.Controllers
         private List<Events> GetEvents()//[Bind(Include = "id,title,date,start,end,url,allDay")] Events events)
         {
             List<Events> eventList = new List<Events>();
+            List<Events> currentCompanyList = new List<Events>();
             using (DataBaseContext db = new DataBaseContext())
             {
                 eventList = db.Events.ToList();
+                foreach (Events i in eventList)
+                {
+                    var CompaniesEvent = from currentCompany in db.Events
+                             where currentCompany.RegisteredCompaniesId == i.RegisteredCompaniesId
+                             select currentCompany;
+                    currentCompanyList.AddRange(CompaniesEvent);
+                }
+                
+                
+
             }
             //int eventListSize = eventList.Count;
             //for (int i = 0; i < eventListSize; i++)
@@ -103,7 +114,7 @@ namespace SchedulingApp.Controllers
 
             //    //    //eventList.Add(newEvent);
             //}
-            return eventList;
+            return currentCompanyList;
         }
 
         private static DateTime ConvertFromUnixTimestamp(double timestamp)
