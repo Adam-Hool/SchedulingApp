@@ -9,7 +9,6 @@ namespace SchedulingApp.Modles
     public class RoleController : Controller
     {
         ApplicationDbContext context;
-        public virtual int Id { get; set; }
         public RoleController()
         {
             context = new ApplicationDbContext();

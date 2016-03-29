@@ -13,8 +13,8 @@ namespace SchedulingApp.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         RegisteredCompaniesId = c.Int(nullable: false),
-                        EmployeesId = c.Int(),
-                        MondayId = c.Int(),
+                        EmployeesId = c.Int(nullable: false),
+                        MondayId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.RegisteredCompanies", t => t.RegisteredCompaniesId, cascadeDelete: true)
@@ -51,23 +51,24 @@ namespace SchedulingApp.Migrations
                         end = c.String(),
                         url = c.String(),
                         allDay = c.Boolean(nullable: false),
-                        RegisteredCompaniesId = c.Int(nullable: false),
-                        Day_Id = c.Int(),
-                        Employees_Id = c.Int(),
-                        JobRole_Id = c.Int(),
+                        RegisteredCompany = c.String(),
+                        DayId_Id = c.Int(),
+                        EmployeesId_Id = c.Int(),
+                        JobRoleId_Id = c.Int(),
                         Monday_Id = c.Int(),
+                        RegisteredCompanies_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.id)
-                .ForeignKey("dbo.Days", t => t.Day_Id)
-                .ForeignKey("dbo.Employees", t => t.Employees_Id)
-                .ForeignKey("dbo.JobRoles", t => t.JobRole_Id)
+                .ForeignKey("dbo.Days", t => t.DayId_Id)
+                .ForeignKey("dbo.Employees", t => t.EmployeesId_Id)
+                .ForeignKey("dbo.JobRoles", t => t.JobRoleId_Id)
                 .ForeignKey("dbo.Mondays", t => t.Monday_Id)
-                .ForeignKey("dbo.RegisteredCompanies", t => t.RegisteredCompaniesId, cascadeDelete: true)
-                .Index(t => t.RegisteredCompaniesId)
-                .Index(t => t.Day_Id)
-                .Index(t => t.Employees_Id)
-                .Index(t => t.JobRole_Id)
-                .Index(t => t.Monday_Id);
+                .ForeignKey("dbo.RegisteredCompanies", t => t.RegisteredCompanies_Id)
+                .Index(t => t.DayId_Id)
+                .Index(t => t.EmployeesId_Id)
+                .Index(t => t.JobRoleId_Id)
+                .Index(t => t.Monday_Id)
+                .Index(t => t.RegisteredCompanies_Id);
             
             CreateTable(
                 "dbo.Employees",
@@ -139,28 +140,28 @@ namespace SchedulingApp.Migrations
         {
             DropForeignKey("dbo.Schedules", "RegisteredCompaniesId", "dbo.RegisteredCompanies");
             DropForeignKey("dbo.JobRoles", "RegisteredCompaniesId", "dbo.RegisteredCompanies");
-            DropForeignKey("dbo.Events", "RegisteredCompaniesId", "dbo.RegisteredCompanies");
+            DropForeignKey("dbo.Events", "RegisteredCompanies_Id", "dbo.RegisteredCompanies");
             DropForeignKey("dbo.Employees", "RegisteredCompaniesId", "dbo.RegisteredCompanies");
             DropForeignKey("dbo.Days", "RegisteredCompaniesId", "dbo.RegisteredCompanies");
             DropForeignKey("dbo.Availabilities", "RegisteredCompaniesId", "dbo.RegisteredCompanies");
             DropForeignKey("dbo.Events", "Monday_Id", "dbo.Mondays");
             DropForeignKey("dbo.Days", "Availability_Id", "dbo.Availabilities");
-            DropForeignKey("dbo.Events", "JobRole_Id", "dbo.JobRoles");
+            DropForeignKey("dbo.Events", "JobRoleId_Id", "dbo.JobRoles");
             DropForeignKey("dbo.Schedules", "Employees_Id", "dbo.Employees");
             DropForeignKey("dbo.Days", "Schedule_Id", "dbo.Schedules");
             DropForeignKey("dbo.JobRoles", "Employees_Id", "dbo.Employees");
-            DropForeignKey("dbo.Events", "Employees_Id", "dbo.Employees");
-            DropForeignKey("dbo.Events", "Day_Id", "dbo.Days");
+            DropForeignKey("dbo.Events", "EmployeesId_Id", "dbo.Employees");
+            DropForeignKey("dbo.Events", "DayId_Id", "dbo.Days");
             DropIndex("dbo.Schedules", new[] { "Employees_Id" });
             DropIndex("dbo.Schedules", new[] { "RegisteredCompaniesId" });
             DropIndex("dbo.JobRoles", new[] { "Employees_Id" });
             DropIndex("dbo.JobRoles", new[] { "RegisteredCompaniesId" });
             DropIndex("dbo.Employees", new[] { "RegisteredCompaniesId" });
+            DropIndex("dbo.Events", new[] { "RegisteredCompanies_Id" });
             DropIndex("dbo.Events", new[] { "Monday_Id" });
-            DropIndex("dbo.Events", new[] { "JobRole_Id" });
-            DropIndex("dbo.Events", new[] { "Employees_Id" });
-            DropIndex("dbo.Events", new[] { "Day_Id" });
-            DropIndex("dbo.Events", new[] { "RegisteredCompaniesId" });
+            DropIndex("dbo.Events", new[] { "JobRoleId_Id" });
+            DropIndex("dbo.Events", new[] { "EmployeesId_Id" });
+            DropIndex("dbo.Events", new[] { "DayId_Id" });
             DropIndex("dbo.Days", new[] { "Availability_Id" });
             DropIndex("dbo.Days", new[] { "Schedule_Id" });
             DropIndex("dbo.Days", new[] { "RegisteredCompaniesId" });

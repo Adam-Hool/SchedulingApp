@@ -209,22 +209,19 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MondaysController.cs" />
     <Compile Include="Controllers\RegisteredCompaniesController.cs" />
+    <Compile Include="Controllers\RequestsController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SchedulesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603241923395_initalSchema.cs" />
-    <Compile Include="Migrations\201603241923395_initalSchema.Designer.cs">
-      <DependentUpon>201603241923395_initalSchema.cs</DependentUpon>
+    <Compile Include="Migrations\201603291350344_initalSchema.cs" />
+    <Compile Include="Migrations\201603291350344_initalSchema.Designer.cs">
+      <DependentUpon>201603291350344_initalSchema.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603241936277_updatedmonday.cs" />
-    <Compile Include="Migrations\201603241936277_updatedmonday.Designer.cs">
-      <DependentUpon>201603241936277_updatedmonday.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603251915055_updatedEmployeesId.cs" />
-    <Compile Include="Migrations\201603251915055_updatedEmployeesId.Designer.cs">
-      <DependentUpon>201603251915055_updatedEmployeesId.cs</DependentUpon>
+    <Compile Include="Migrations\201603291444012_addedRequests.cs" />
+    <Compile Include="Migrations\201603291444012_addedRequests.Designer.cs">
+      <DependentUpon>201603291444012_addedRequests.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -239,6 +236,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Monday.cs" />
     <Compile Include="Models\RegisteredCompanies.cs" />
+    <Compile Include="Models\Requests.cs" />
     <Compile Include="Models\Saturday.cs" />
     <Compile Include="Models\Schedule.cs" />
     <Compile Include="Models\Day.cs" />
@@ -364,7 +362,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -375,7 +375,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Requests.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
@@ -439,6 +439,10 @@
     <Content Include="Views\Availabilities\Create.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Views\Role\Create.cshtml" />
+    <Content Include="Views\Requests\Index.cshtml" />
+    <Content Include="Views\Requests\Details.cshtml" />
+    <Content Include="Views\Requests\Create.cshtml" />
+    <Content Include="Views\Requests\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -451,14 +455,11 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603241923395_initalSchema.resx">
-      <DependentUpon>201603241923395_initalSchema.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603291350344_initalSchema.resx">
+      <DependentUpon>201603291350344_initalSchema.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603241936277_updatedmonday.resx">
-      <DependentUpon>201603241936277_updatedmonday.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603251915055_updatedEmployeesId.resx">
-      <DependentUpon>201603251915055_updatedEmployeesId.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603291444012_addedRequests.resx">
+      <DependentUpon>201603291444012_addedRequests.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

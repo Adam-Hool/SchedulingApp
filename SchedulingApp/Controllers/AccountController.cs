@@ -144,7 +144,7 @@ namespace SchedulingApp.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            ViewBag.Name = new SelectList(context.Roles.ToList(), "Name", "Name");
+            ViewBag.Name = new SelectList(context.Roles.ToList(),"Name", "Name");
             return View();
         }
 
@@ -157,7 +157,7 @@ namespace SchedulingApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, RegisteredCompany = model.RegisteredCompany};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

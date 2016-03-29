@@ -1,7 +1,10 @@
-﻿using SchedulingApp.Models;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using SchedulingApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -15,7 +18,7 @@ namespace SchedulingApp.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Requests()
         {
             ViewBag.Message = "Your application description page.";
 
@@ -73,19 +76,22 @@ namespace SchedulingApp.Controllers
         {
             List<Events> eventList = new List<Events>();
             List<Events> currentCompanyList = new List<Events>();
-            using (DataBaseContext db = new DataBaseContext())
+            ApplicationDbContext context = new ApplicationDbContext();
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            if (user.RegisteredCompany != null)
             {
-                eventList = db.Events.ToList();
-                foreach (Events i in eventList)
+                using (DataBaseContext db = new DataBaseContext())
                 {
-                    var CompaniesEvent = from currentCompany in db.Events
-                             where currentCompany.RegisteredCompaniesId == i.RegisteredCompaniesId
+                    eventList = db.Events.ToList();
+                    foreach (Events i in eventList)
+                    {
+                        var CompaniesEvent = from currentCompany in db.Events
+                             where currentCompany.RegisteredCompany == user.RegisteredCompany
                              select currentCompany;
-                    currentCompanyList.AddRange(CompaniesEvent);
+                            currentCompanyList.AddRange(CompaniesEvent);
+                    }
                 }
-                
-                
-
             }
             //int eventListSize = eventList.Count;
             //for (int i = 0; i < eventListSize; i++)

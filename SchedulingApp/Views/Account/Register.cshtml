@@ -30,16 +30,16 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.RegisteredCompaniesId, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.RegisteredCompany, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.RegisteredCompaniesId, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.RegisteredCompany, new { @class = "form-control" })
         </div>
     </div>
     <!--Select the Role Type for the User-->
     <div class="form-group">
         @Html.Label("Select Your User Type", new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DropDownList("Name", "Name")
+            @Html.DropDownList("Name")@*@Html.DropDownListFor(model => model.Name, (SelectList)ViewBag.Name)*@
         </div>
     </div>
     <!--Ends Here-->

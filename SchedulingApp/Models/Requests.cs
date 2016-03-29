@@ -5,7 +5,7 @@ using System.Web;
 
 namespace SchedulingApp.Models
 {
-    public class Events
+    public class Requests
     {
         public int id { get; set; }
         public string title { get; set; }
@@ -16,7 +16,7 @@ namespace SchedulingApp.Models
         public bool allDay { get; set; }
         public virtual JobRole JobRoleId { get; set; }
         public virtual Day DayId { get; set; }
-        public virtual Employees EmployeesId{ get; set; }
+        public virtual Employees EmployeesId { get; set; }
         public string RegisteredCompany { get; set; }
     }
 }

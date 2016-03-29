@@ -23,5 +23,7 @@ namespace SchedulingApp.Models
         public System.Data.Entity.DbSet<SchedulingApp.Models.Events> Events { get; set; }
 
         public System.Data.Entity.DbSet<SchedulingApp.Models.Monday> Mondays { get; set; }
+
+        public System.Data.Entity.DbSet<SchedulingApp.Models.Requests> Requests { get; set; }
     }
 }

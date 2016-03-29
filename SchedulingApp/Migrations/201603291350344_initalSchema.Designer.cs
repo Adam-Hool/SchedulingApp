@@ -13,7 +13,7 @@ namespace SchedulingApp.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201603241923395_initalSchema"; }
+            get { return "201603291350344_initalSchema"; }
         }
         
         string IMigrationMetadata.Source

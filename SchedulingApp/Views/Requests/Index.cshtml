@@ -1,0 +1,35 @@
+﻿@model IEnumerable<SchedulingApp.Models.Requests>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div class="jumbotron">
+    <h1>Event Calendar</h1>
+    <div id="calendar2"></div>
+</div>
+
+@section scripts{
+
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+            $('#calendar2').fullCalendar({
+                theme: true,
+
+                //defaultView: 'agendaDay',
+                editable: true,
+                events: "/Requests/getevents/"
+            });
+        });
+
+
+    </script>
+    }
