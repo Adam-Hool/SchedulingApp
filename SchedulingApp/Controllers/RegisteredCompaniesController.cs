@@ -10,6 +10,7 @@ using SchedulingApp.Models;
 
 namespace SchedulingApp.Controllers
 {
+    [Authorize(Roles ="GodAdmin")]
     public class RegisteredCompaniesController : Controller
     {
         private DataBaseContext db = new DataBaseContext();
@@ -21,18 +22,18 @@ namespace SchedulingApp.Controllers
         }
 
         // GET: RegisteredCompanies/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RegisteredCompanies registeredCompanies = db.RegisteredCompanies.Find(id);
-            if (registeredCompanies == null)
+            RegisteredCompany registeredCompany = db.RegisteredCompanies.Find(id);
+            if (registeredCompany == null)
             {
                 return HttpNotFound();
             }
-            return View(registeredCompanies);
+            return View(registeredCompany);
         }
 
         // GET: RegisteredCompanies/Create
@@ -46,31 +47,31 @@ namespace SchedulingApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,CompanyName")] RegisteredCompanies registeredCompanies)
+        public ActionResult Create([Bind(Include = "id,CompanyName")] RegisteredCompany registeredCompany)
         {
             if (ModelState.IsValid)
             {
-                db.RegisteredCompanies.Add(registeredCompanies);
+                db.RegisteredCompanies.Add(registeredCompany);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(registeredCompanies);
+            return View(registeredCompany);
         }
 
         // GET: RegisteredCompanies/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RegisteredCompanies registeredCompanies = db.RegisteredCompanies.Find(id);
-            if (registeredCompanies == null)
+            RegisteredCompany registeredCompany = db.RegisteredCompanies.Find(id);
+            if (registeredCompany == null)
             {
                 return HttpNotFound();
             }
-            return View(registeredCompanies);
+            return View(registeredCompany);
         }
 
         // POST: RegisteredCompanies/Edit/5
@@ -78,39 +79,39 @@ namespace SchedulingApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,CompanyName")] RegisteredCompanies registeredCompanies)
+        public ActionResult Edit([Bind(Include = "id,CompanyName")] RegisteredCompany registeredCompany)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(registeredCompanies).State = EntityState.Modified;
+                db.Entry(registeredCompany).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Details", registeredCompanies);
+                return RedirectToAction("Index");
             }
-            return View(registeredCompanies);
+            return View(registeredCompany);
         }
 
         // GET: RegisteredCompanies/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RegisteredCompanies registeredCompanies = db.RegisteredCompanies.Find(id);
-            if (registeredCompanies == null)
+            RegisteredCompany registeredCompany = db.RegisteredCompanies.Find(id);
+            if (registeredCompany == null)
             {
                 return HttpNotFound();
             }
-            return View(registeredCompanies);
+            return View(registeredCompany);
         }
 
         // POST: RegisteredCompanies/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
-            RegisteredCompanies registeredCompanies = db.RegisteredCompanies.Find(id);
-            db.RegisteredCompanies.Remove(registeredCompanies);
+            RegisteredCompany registeredCompany = db.RegisteredCompanies.Find(id);
+            db.RegisteredCompanies.Remove(registeredCompany);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

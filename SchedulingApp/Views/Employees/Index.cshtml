@@ -1,4 +1,4 @@
-﻿@model IEnumerable <SchedulingApp.Models.Employees>
+﻿@model IEnumerable<SchedulingApp.Models.Employees>
 
 @{
     ViewBag.Title = "Index";
@@ -12,24 +12,46 @@
 <table class="table">
     <tr>
         <th>
-            Employees
+            @Html.DisplayNameFor(model => model.RegisteredCompanyid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HigherDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobRoleid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Availabilityid)
         </th>
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FullName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-    }
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RegisteredCompanyid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HigherDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobRoleid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Availabilityid)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
 
 </table>
-
-

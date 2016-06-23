@@ -157,7 +157,7 @@ namespace SchedulingApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, RegisteredCompany = model.RegisteredCompany};
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, RegisteredCompany = model.RegisteredCompanyid};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

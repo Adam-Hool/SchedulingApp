@@ -11,35 +11,19 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.RegisteredCompaniesId)
+            @Html.DisplayNameFor(model => model.RegisteredCompanyid)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.RegisteredCompaniesId)
+            @Html.DisplayFor(model => model.RegisteredCompanyid)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AvailabilityId)
+            @Html.DisplayNameFor(model => model.FullName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AvailabilityId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
+            @Html.DisplayFor(model => model.FullName)
         </dd>
 
         <dt>
@@ -50,9 +34,25 @@
             @Html.DisplayFor(model => model.HigherDate)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.JobRoleid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobRoleid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Availabilityid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Availabilityid)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

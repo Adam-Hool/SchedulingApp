@@ -1,27 +1,32 @@
-﻿@{
+﻿@model IEnumerable<SchedulingApp.Models.Events>
+@{
     ViewBag.Title = "Home Page";
 }
-
 <div class="jumbotron">
     <h1>Event Calendar</h1>
     <div id="calendar"></div>
 </div>
 
-@section scripts{
 
+
+@section Scripts{
     <script type="text/javascript">
 
 
         $(document).ready(function () {
-            $('#calendar').fullCalendar({
-                theme: true,
 
-                //defaultView: 'agendaDay',
-                editable: true,
-                events: "/home/getevents/"
+            $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                eventClick: function () {
+                    alert('a day has been clicked!');
+                },
+                events:"/home/getevents/"
             });
         });
-
-
     </script>
-}
+    }
+    

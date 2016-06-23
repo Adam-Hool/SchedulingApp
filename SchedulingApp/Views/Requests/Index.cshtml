@@ -5,31 +5,92 @@
 }
 
 <h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
 <div class="jumbotron">
-    <h1>Event Calendar</h1>
+    <h1>Requests Calendar</h1>
     <div id="calendar2"></div>
 </div>
 
-@section scripts{
 
+
+@section Scripts{
     <script type="text/javascript">
 
 
         $(document).ready(function () {
-            $('#calendar2').fullCalendar({
-                theme: true,
 
-                //defaultView: 'agendaDay',
-                editable: true,
-                events: "/Requests/getevents/"
+            $('#calendar2').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                eventClick: function () {
+                    alert('a day has been clicked!');
+                },
+                events:"/requests/getevents/"
             });
         });
-
-
     </script>
-    }
+}
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.start)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.end)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.url)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.allDay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RegisteredCompanyid)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.start)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.end)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.url)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.allDay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RegisteredCompanyid)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>
+

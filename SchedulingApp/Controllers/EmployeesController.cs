@@ -21,7 +21,7 @@ namespace SchedulingApp.Controllers
         }
 
         // GET: Employees/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
@@ -46,7 +46,7 @@ namespace SchedulingApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,RegisteredCompaniesId,AvailabilityId,FullName,HigherDate")] Employees employees)
+        public ActionResult Create([Bind(Include = "id,RegisteredCompanyid,FullName,HigherDate,JobRoleid,Availabilityid")] Employees employees)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +59,7 @@ namespace SchedulingApp.Controllers
         }
 
         // GET: Employees/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
@@ -78,7 +78,7 @@ namespace SchedulingApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,RegisteredCompaniesId,AvailabilityId,FullName,HigherDate")] Employees employees)
+        public ActionResult Edit([Bind(Include = "id,RegisteredCompanyid,FullName,HigherDate,JobRoleid,Availabilityid")] Employees employees)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace SchedulingApp.Controllers
         }
 
         // GET: Employees/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
@@ -107,7 +107,7 @@ namespace SchedulingApp.Controllers
         // POST: Employees/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
             Employees employees = db.Employees.Find(id);
             db.Employees.Remove(employees);

@@ -7,9 +7,12 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SchedulingApp.Models;
+using System.Web.Security;
 
 namespace SchedulingApp.Controllers
 {
+    [Authorize(Roles = "GodAdmin,Manager")]
+    //[Authorize(Roles = "Manager")]
     public class EventsController : Controller
     {
         private DataBaseContext db = new DataBaseContext();
@@ -46,7 +49,7 @@ namespace SchedulingApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,title,date,start,end,url,allDay,RegisteredCompaniesId,EmployeesId")] Events events)
+        public ActionResult Create([Bind(Include = "id,title,date,start,end,RegisteredCompanyid")] Events events)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +81,7 @@ namespace SchedulingApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,title,date,start,end,url,allDay")] Events events)
+        public ActionResult Edit([Bind(Include = "id,title,date,start,end,RegisteredCompanyid")] Events events)
         {
             if (ModelState.IsValid)
             {

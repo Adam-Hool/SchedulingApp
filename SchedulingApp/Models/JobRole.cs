@@ -7,10 +7,10 @@ namespace SchedulingApp.Models
 {
     public class JobRole
     {
-        public int Id { get; set; }
-        public int RegisteredCompaniesId { get; set; }
-        public virtual Employees Employees { get; set; }
+        public string id { get; set; }
+        public virtual string RegisteredCompanyid { get; set; }
         public string JobTitle { get; set; }
+        public ICollection<Employees> Employees { get; set; }
 
     }
 }

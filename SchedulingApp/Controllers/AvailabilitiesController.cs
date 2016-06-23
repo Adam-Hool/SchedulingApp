@@ -21,7 +21,7 @@ namespace SchedulingApp.Controllers
         }
 
         // GET: Availabilities/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
@@ -46,7 +46,7 @@ namespace SchedulingApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,RegisteredCompaniesID,MondayId,EmployeesId")] Availability availability)
+        public ActionResult Create([Bind(Include = "id,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday,RegisteredCompanyid,Employeesid")] Availability availability)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +59,7 @@ namespace SchedulingApp.Controllers
         }
 
         // GET: Availabilities/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
@@ -78,7 +78,7 @@ namespace SchedulingApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,RegisteredCompaniesID")] Availability availability)
+        public ActionResult Edit([Bind(Include = "id,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday,RegisteredCompanyid,Employeesid")] Availability availability)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace SchedulingApp.Controllers
         }
 
         // GET: Availabilities/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
@@ -107,7 +107,7 @@ namespace SchedulingApp.Controllers
         // POST: Availabilities/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
             Availability availability = db.Availability.Find(id);
             db.Availability.Remove(availability);

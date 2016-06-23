@@ -48,7 +48,7 @@ namespace SchedulingApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,title,date,start,end,url,allDay,RegisteredCompany")] Requests requests)
+        public ActionResult Create([Bind(Include = "id,title,date,start,end,RegisteredCompanyid")] Requests requests)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +80,7 @@ namespace SchedulingApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,title,date,start,end,url,allDay,RegisteredCompany")] Requests requests)
+        public ActionResult Edit([Bind(Include = "id,title,date,start,end,RegisteredCompanyid")] Requests requests)
         {
             if (ModelState.IsValid)
             {
@@ -138,36 +138,10 @@ namespace SchedulingApp.Controllers
             var rows = eventList.ToArray();
             return Json(rows, JsonRequestBehavior.AllowGet);
         }
-        //public List<Events> MakeEvent([Bind(Include = "id,title,date,start,end,url,allDay")] Events events)
-        //{
-        //    List<Events> eventList = new List<Events>();
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Events.Add(events);
-        //        db.SaveChanges();
-        //    }
-        //    eventList.Add(newEvent);
-        //    return eventList;
-        //}
-        //public JsonResult GetEvents()
-        //{
-        //    using (var db = new DataBaseContext())
-        //    {
-        //        var events = from cevent in db.Events
-        //                     select cevent;
-        //        var rows = events.ToList().Select(cevent => new {
-        //            id = cevent.id,
-        //            start = cevent.start.ToString(),
-        //            end = cevent.end.ToString()
-        //        }).ToArray();
-        //        return Json(rows, JsonRequestBehavior.AllowGet);
-        //    }
-        //}
 
-
-
-        private List<Requests> GetEvents()//[Bind(Include = "id,title,date,start,end,url,allDay")] Events events)
+        private List<Requests> GetEvents()
         {
+
             List<Requests> eventList = new List<Requests>();
             List<Requests> currentCompanyList = new List<Requests>();
             ApplicationDbContext context = new ApplicationDbContext();
@@ -180,40 +154,25 @@ namespace SchedulingApp.Controllers
                     eventList = db.Requests.ToList();
                     foreach (Requests i in eventList)
                     {
-                        var CompaniesEvent = from currentCompany in db.Requests
-                                             where currentCompany.RegisteredCompany == user.RegisteredCompany
-                                             select currentCompany;
-                        currentCompanyList.AddRange(CompaniesEvent);
+                        if (i.RegisteredCompanyid == user.RegisteredCompany)
+                        {
+                            currentCompanyList.Add(new Requests
+                            {
+                                id = i.id,
+                                title = i.title,
+                                start = i.start,
+                                end = i.end,
+                                allDay = i.allDay
+                            });
+
+                        }
                     }
                 }
             }
-            //int eventListSize = eventList.Count;
-            //for (int i = 0; i < eventListSize; i++)
-            //{
-            //    //eventList[i];
-            //    Events newEvent = new Events
-            //    {
-            //        id = eventList[i].id,
-            //        title = eventList[i].title,
-            //        start = eventList[i].start,
-            //        end = eventList[i].end,
-            //        allDay = eventList[i].allDay
-            //    };
-
-
-            //    eventList.Add(newEvent);
-
-            //    //    //newEvent = new Events
-            //    //    //{
-            //    //    //    id = 1,
-            //    //    //    title = "Event 3",
-            //    //    //    start = DateTime.Now.AddDays(2).ToString("s"),
-            //    //    //    end = DateTime.Now.AddDays(3).ToString("s"),
-            //    //    //    allDay = false
-            //    //    //};
-
-            //    //    //eventList.Add(newEvent);
-            //}
+            else
+            {
+                return currentCompanyList;
+            }
             return currentCompanyList;
         }
 
